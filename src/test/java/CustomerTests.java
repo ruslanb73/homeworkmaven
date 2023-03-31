@@ -40,8 +40,7 @@ public class CustomerTests extends BaseTest {
         Allure.step("Шаг 3. Ввести почтовый индекс в поле Post Code", managerAddCustomerPage::addProductCode);
         Allure.step("Шаг 4. Нажать прозрачную кнопку AddCustomer", managerAddCustomerPage::addCustomer);
         Assert.assertEquals(managerAddCustomerPage.lastNameEnterField(),
-                "Заполните это поле.",
-               "Уведомление не соответствует");
+                "Заполните это поле.");
     }
 
     @Test(description = "Всплывающее уведомление при создании клиента на странице manager при отсутствии заполненного поля First Name")
@@ -52,8 +51,7 @@ public class CustomerTests extends BaseTest {
         Allure.step("Шаг 3. Ввести почтовый индекс в поле Post Code", managerAddCustomerPage::addProductCode);
         Allure.step("Шаг 4. Нажать прозрачную кнопку AddCustomer", managerAddCustomerPage::addCustomer);
         Assert.assertEquals(managerAddCustomerPage.firstNameEnterField(),
-                "Заполните это поле.",
-                "Уведомление не соответствует");
+                "Заполните это поле.");
     }
 
     @Test(description = "Всплывающее уведомление при создании клиента на странице manager при отсутствии заполненного поля Product Code" )
@@ -64,8 +62,7 @@ public class CustomerTests extends BaseTest {
         Allure.step("Шаг 2. Ввести фамилию клиента в поле First Name", managerAddCustomerPage::addLastName);
         Allure.step("Шаг 4. Нажать прозрачную кнопку AddCustomer", managerAddCustomerPage::addCustomer);
         Assert.assertEquals(managerAddCustomerPage.productCodeEnterField(),
-                "Заполните это поле.",
-                "Уведомление не соответствует");
+                "Заполните это поле.");
     }
 }
 
