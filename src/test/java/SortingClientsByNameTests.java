@@ -1,18 +1,19 @@
 import io.qameta.allure.Allure;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Epic;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import pages.ManagerCustomerPage;
 
-import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 /**
  * Основной класс с тестами SortingClientsByNameTests
  */
-@DisplayName("Сортировка клиентов по имени (First Name)")
+@Epic("Сортировка клиентов по имени (First Name)")
 public class SortingClientsByNameTests extends BaseTest {
 
-    @DisplayName("Сортировка клиентов на странице manager в порядке возрастания")
-    @Test
+
+    @Test(description = "Сортировка клиентов на странице manager в порядке возрастания")
     public void test() {
         ManagerCustomerPage managerCustomerPage = new ManagerCustomerPage(driver);
         Allure.step("Шаг 1. Нажать кнопку Customers", managerCustomerPage::customerButton);
@@ -21,25 +22,25 @@ public class SortingClientsByNameTests extends BaseTest {
             managerCustomerPage.firstNameButton();
             managerCustomerPage.firstNameButton();
             managerCustomerPage.textFirstName();
-            assertSoftly(
-                    softAssertions -> softAssertions
-                            .assertThat(managerCustomerPage.textFirstName())
-                            .withFailMessage("Ошибка при сортировке данных ")
-                            .isEqualTo("Albus"));
+            Assert.assertEquals(
+                    managerCustomerPage.textFirstName(),
+                    "Albus",
+                    "Ошибка при сортировке данных ");
+
         });
     }
 
-    @DisplayName("Сортировка клиентов на странице manager в порядке убывания")
-    @Test
+
+    @Test(description = "Сортировка клиентов на странице manager в порядке убывания")
     public void test2() {
         ManagerCustomerPage managerCustomerPage = new ManagerCustomerPage(driver);
         Allure.step("Шаг 1. Нажать кнопку Customers", managerCustomerPage::customerButton);
         Allure.step("Шаг 2:  Нажать на кнопку сортировки First Name два раза", managerCustomerPage::firstNameButton);
         managerCustomerPage.textFirstName();
-        assertSoftly(
-                softAssertions -> softAssertions
-                        .assertThat(managerCustomerPage.textFirstName())
-                        .withFailMessage("Ошибка при сортировке данных ")
-                        .isEqualTo("Ron"));
+        Assert.assertEquals(
+                managerCustomerPage.textFirstName(),
+                "Ron",
+                "Ошибка при сортировке данных ");
+
     }
 }

@@ -1,14 +1,14 @@
 import config.BaseConfig;
 import io.qameta.allure.Allure;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Общий класс с настройками для всех тестов
@@ -31,7 +31,7 @@ abstract public class BaseTest {
     /**
      * Общие настройки для всех тестов, перед выполнением каждого
      */
-    @BeforeEach
+    @BeforeMethod
     public void setUp() {
 
 
@@ -44,14 +44,14 @@ abstract public class BaseTest {
         // Разворот страницы на полное окно
         driver.manage().window().maximize();
         //Ожидание по умолчанию 10 секунд
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
 
     /**
      * Общие настройки для всех тестов, после выполнения каждого
      */
-    @AfterEach
+    @AfterMethod
     public void tearDown() {
         Allure.getLifecycle().addAttachment("screenshot", "image/png", "png", ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         driver.quit();
